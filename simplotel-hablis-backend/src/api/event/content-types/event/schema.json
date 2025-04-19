@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "abouts",
+  "collectionName": "events",
   "info": {
-    "singularName": "about",
-    "pluralName": "abouts",
-    "displayName": "about"
+    "singularName": "event",
+    "pluralName": "events",
+    "displayName": "event"
   },
   "options": {
     "draftAndPublish": true

@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "abouts",
+  "collectionName": "dinings",
   "info": {
-    "singularName": "about",
-    "pluralName": "abouts",
-    "displayName": "about"
+    "singularName": "dining",
+    "pluralName": "dinings",
+    "displayName": "dining"
   },
   "options": {
     "draftAndPublish": true

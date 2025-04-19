@@ -1,20 +1,17 @@
 {
   "kind": "collectionType",
-  "collectionName": "abouts",
+  "collectionName": "rooms",
   "info": {
-    "singularName": "about",
-    "pluralName": "abouts",
-    "displayName": "about"
+    "singularName": "room",
+    "pluralName": "rooms",
+    "displayName": "rooms"
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
-    "title": {
+    "name": {
       "type": "string"
-    },
-    "description": {
-      "type": "richtext"
     },
     "image": {
       "allowedTypes": [
