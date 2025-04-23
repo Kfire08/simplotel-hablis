@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "package_slides",
+  "info": {
+    "singularName": "package-slide",
+    "pluralName": "package-slides",
+    "displayName": "package-slide"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "img_url": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+body {
+  background: url(https://assets.simplotel.com/simplotel/image/upload/w_1366,c_fill/q_80/hablis-hotel-chennai/New_background_image_Hablis_tcfipm_jmqkvg)
+    center center repeat-y #fff;
+  background-attachment: fixed;
+}
+
+section {
+  background-color: rgba(251, 251, 251, 0.2);
+}
+
+#hero-carousel .swiper-pagination {
+  bottom: 95px !important;
+}
+
+#hero-carousel .swiper-pagination-bullet {
+  background-color: white !important;
+  opacity: 0.8 !important;
+  width: 14px !important;
+  height: 14px !important;
+}
+
+#hero-carousel .swiper-pagination-bullet-active {
+  background-color: grey !important;
+  opacity: 1 !important;
+}
+
+#packages > .swiper {
+  height: 300px;
+}
+
+.custom-swiper .swiper-pagination-bullet {
+  background-color: white !important;
+  border: 0.9px solid rgb(41, 41, 41) !important;
+  width: 6.5px !important;
+  height: 6.5px !important;
+}
+
+.custom-swiper .swiper-button-next::after,
+.custom-swiper .swiper-button-prev::after {
+  color: white !important;
+  font-size: 28px !important;
+  z-index: 10 !important;
+}
+
+.reviews-swiper .swiper-button-next::after,
+.reviews-swiper .swiper-button-prev::after {
+  color: rgba(0, 0, 0, 0.5) !important;
+  font-size: 28px !important;
+  z-index: 10 !important;
+}
+
+#facilities .swiper-button-next::after,
+#facilities .swiper-button-prev::after {
+  color: rgba(0, 0, 0, 0.5) !important;
+  font-size: 28px !important;
+  z-index: 10 !important;
+}
+
+#facilities .swiper {
+  height: 550px;
+}

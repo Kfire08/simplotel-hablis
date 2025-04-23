@@ -369,12 +369,13 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiAboutAbout extends Struct.CollectionTypeSchema {
-  collectionName: 'abouts';
+export interface ApiAccommodationImageAccommodationImage
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'accommodation_images';
   info: {
-    displayName: 'about';
-    pluralName: 'abouts';
-    singularName: 'about';
+    displayName: 'accommodation-image';
+    pluralName: 'accommodation-images';
+    singularName: 'accommodation-image';
   };
   options: {
     draftAndPublish: true;
@@ -383,76 +384,11 @@ export interface ApiAboutAbout extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.RichText;
-    image: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::about.about'> &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiContactContact extends Struct.CollectionTypeSchema {
-  collectionName: 'contacts';
-  info: {
-    displayName: 'contact';
-    pluralName: 'contacts';
-    singularName: 'contact';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    address: Schema.Attribute.Text;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    email: Schema.Attribute.String;
+    img_url: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::contact.contact'
-    > &
-      Schema.Attribute.Private;
-    phone: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    social_links: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiDiningDining extends Struct.CollectionTypeSchema {
-  collectionName: 'dinings';
-  info: {
-    displayName: 'dining';
-    pluralName: 'dinings';
-    singularName: 'dining';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.RichText;
-    image: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::dining.dining'
+      'api::accommodation-image.accommodation-image'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
@@ -463,12 +399,13 @@ export interface ApiDiningDining extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiEventEvent extends Struct.CollectionTypeSchema {
-  collectionName: 'events';
+export interface ApiFacilitiesSlideFacilitiesSlide
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'facilities_slides';
   info: {
-    displayName: 'event';
-    pluralName: 'events';
-    singularName: 'event';
+    displayName: 'facilities-slide';
+    pluralName: 'facilities-slides';
+    singularName: 'facilities-slide';
   };
   options: {
     draftAndPublish: true;
@@ -477,13 +414,13 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.RichText;
-    image: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
+    description: Schema.Attribute.String;
+    img_url: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::event.event'> &
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::facilities-slide.facilities-slide'
+    > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String;
@@ -493,12 +430,13 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiRoomRoom extends Struct.CollectionTypeSchema {
-  collectionName: 'rooms';
+export interface ApiHeroSlideHeroSlide extends Struct.CollectionTypeSchema {
+  collectionName: 'hero_slides';
   info: {
-    displayName: 'rooms';
-    pluralName: 'rooms';
-    singularName: 'room';
+    description: '';
+    displayName: 'hero-slide';
+    pluralName: 'hero-slides';
+    singularName: 'hero-slide';
   };
   options: {
     draftAndPublish: true;
@@ -507,15 +445,45 @@ export interface ApiRoomRoom extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    image: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
+    Description: Schema.Attribute.String;
+    img_url: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::room.room'> &
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::hero-slide.hero-slide'
+    > &
       Schema.Attribute.Private;
-    name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPackageSlidePackageSlide
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'package_slides';
+  info: {
+    displayName: 'package-slide';
+    pluralName: 'package-slides';
+    singularName: 'package-slide';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    img_url: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::package-slide.package-slide'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1031,11 +999,10 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::about.about': ApiAboutAbout;
-      'api::contact.contact': ApiContactContact;
-      'api::dining.dining': ApiDiningDining;
-      'api::event.event': ApiEventEvent;
-      'api::room.room': ApiRoomRoom;
+      'api::accommodation-image.accommodation-image': ApiAccommodationImageAccommodationImage;
+      'api::facilities-slide.facilities-slide': ApiFacilitiesSlideFacilitiesSlide;
+      'api::hero-slide.hero-slide': ApiHeroSlideHeroSlide;
+      'api::package-slide.package-slide': ApiPackageSlidePackageSlide;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

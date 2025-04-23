@@ -1,0 +1,23 @@
+{
+    "kind": "collectionType",
+    "collectionName": "facilities_slides",
+    "info": {
+        "singularName": "facilities-slide",
+        "pluralName": "facilities-slides",
+        "displayName": "facilities-slide"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "attributes": {
+        "title": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "img_url": {
+            "type": "string"
+        }
+    }
+}

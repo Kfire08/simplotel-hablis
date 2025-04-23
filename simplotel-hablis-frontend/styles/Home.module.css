@@ -1,0 +1,211 @@
+@keyframes zoom-out {
+  0% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes zoom-out-bg {
+  0% {
+    background-size: 110%; /* Start with a zoomed-in background */
+  }
+  100% {
+    background-size: 100%; /* End with the original size */
+  }
+}
+
+.animateZoomOut {
+  animation: zoom-out-bg 3s ease-in-out forwards;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 110%; /* Ensure the animation starts zoomed in */
+}
+
+.parallaxImage {
+  background: url(https://assets.simplotel.com/simplotel/image/upload/x_0,y_0,w_2560,h_1443,r_0,c_crop,q_90,fl_progressive/w_1350,f_auto,c_fit/hablis-hotel-chennai/car_facility)
+    center center repeat-y #fff;
+  background-attachment: fixed;
+  width: 100%;
+  height: 400px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Position the text below the pagination bullets */
+.carouselText {
+  position: absolute;
+  bottom: 45px; /* Adjust this value to position the text */
+  z-index: 10;
+  text-align: center;
+  width: 100%;
+  color: white;
+}
+.carouselText p {
+  font-size: 32px;
+}
+
+/* Home.module.css */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 50;
+  transition: all 0.3s ease-in-out;
+}
+.header > div {
+  padding: 0;
+  height: 101px;
+}
+.header > div > img {
+  height: 90px;
+}
+.header nav {
+  height: 100px;
+}
+.header nav > a {
+  padding-bottom: 40px;
+  padding-top: 40px;
+  font-weight: 400;
+  font-size: 16px;
+}
+.header nav > a:hover {
+  border-bottom: 3px solid #fff;
+  transition: all 0.1s linear;
+}
+.header > div > button {
+  background-color: #241f21;
+  border: 3px double white;
+  border-radius: 0;
+  color: white;
+  text-transform: uppercase;
+  padding: 10px 40px;
+  font-weight: 400;
+  font-size: 16px;
+}
+.header > div > button:hover {
+  background-color: black;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.headerTransparent {
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.7) 25%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.2) 75%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.headerScrolled {
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: none; /* No shadow */
+  transition: all 0.5s ease-in-out;
+}
+
+.bookingSection {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.bookingSection label {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.bookingSection button {
+  position: relative;
+  background-color: #241f21;
+  border: 3px double white;
+  border-radius: 0;
+  color: white;
+  text-transform: uppercase;
+  padding: 8px 30px;
+  font-weight: 400;
+  font-size: 16px;
+  top: 10px;
+}
+
+.bookingSection .inputContainer {
+  border-radius: 0;
+  height: 40px;
+}
+
+.footer {
+  background-color: #58585a;
+}
+
+.footer hr {
+  border-top: 0.5px solid #fff;
+}
+
+.imageGrid {
+  grid-template-rows: repeat(6, calc((100% / 6) - 15px));
+  width: 100%;
+  margin: 0;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 15px;
+  -ms-grid-columns: 1fr 15px 1fr 15px 1fr 15px 1fr 15px 1fr 15px 1fr 15px 1fr
+    15px 1fr 15px 1fr 15px 1fr 15px 1fr 15px 1fr;
+  grid-template-columns: repeat(12, calc((100% / 12) - 15px));
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-line-pack: end;
+  align-content: end;
+}
+
+.imageGrid .imageGridItem1 {
+  grid-column-start: 1;
+  grid-column-end: 6;
+  grid-row-start: 1;
+  grid-row-end: 5;
+}
+
+.imageGrid .imageGridItem2 {
+  grid-column-start: 6;
+  grid-column-end: 9;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+.imageGrid .imageGridItem3 {
+  grid-column-start: 6;
+  grid-column-end: 9;
+  grid-row-start: 3;
+  grid-row-end: 5;
+}
+
+.imageGrid .imageGridItem4 {
+  grid-column-start: 9;
+  grid-column-end: 13;
+  grid-row-start: 1;
+  grid-row-end: 4;
+}
+
+.imageGrid .imageGridItem5 {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 5;
+  grid-row-end: 7;
+}
+
+.imageGrid .imageGridItem6 {
+  grid-column-start: 5;
+  grid-column-end: 9;
+  grid-row-start: 5;
+  grid-row-end: 7;
+}
+
+.imageGrid .imageGridItem7 {
+  grid-column-start: 9;
+  grid-column-end: 13;
+  grid-row-start: 4;
+  grid-row-end: 7;
+}

@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hero_slides",
+  "info": {
+    "singularName": "hero-slide",
+    "pluralName": "hero-slides",
+    "displayName": "hero-slide",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Description": {
+      "type": "string"
+    },
+    "img_url": {
+      "type": "string"
+    }
+  }
+}
