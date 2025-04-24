@@ -9,7 +9,109 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
-export default function Home() {
+interface HeroSlide {
+  id: number;
+  description: string;
+  imageUrl: string;
+}
+
+interface PackageSlide {
+  id: number;
+  title: string;
+  imageUrl: string;
+}
+
+interface FacilitiesSlide {
+  id: number;
+  title: string;
+  description: string;
+  imageUrl: string;
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  try {
+    const [
+      heroSlidesRes,
+      packageSlidesRes,
+      accommodationImagesRes,
+      facilitiesSlidesRes,
+    ] = await Promise.all([
+      fetch(
+        "https://simplotel-hablis-backend.onrender.com/api/hero-slides?populate=*"
+      ),
+      fetch(
+        "https://simplotel-hablis-backend.onrender.com/api/package-slides?populate=*"
+      ),
+      fetch(
+        "https://simplotel-hablis-backend.onrender.com/api/accommodation-images?populate=*"
+      ),
+      fetch(
+        "https://simplotel-hablis-backend.onrender.com/api/facilities-slides?populate=*"
+      ),
+    ]);
+
+    const [
+      heroSlidesData,
+      packageSlidesData,
+      accommodationImagesData,
+      facilitiesSlidesData,
+    ] = await Promise.all([
+      heroSlidesRes.json(),
+      packageSlidesRes.json(),
+      accommodationImagesRes.json(),
+      facilitiesSlidesRes.json(),
+    ]);
+
+    return {
+      props: {
+        heroSlides: heroSlidesData.data.map((item: any) => ({
+          id: item.id,
+          description: item.Description,
+          imageUrl: item.img_url,
+        })),
+        packageSlides: packageSlidesData.data.map((item: any) => ({
+          id: item.id,
+          title: item.title,
+          imageUrl: item.img_url,
+        })),
+        accommodationImages: accommodationImagesData.data.map((item: any) => ({
+          id: item.id,
+          title: item.title,
+          imageUrl: item.img_url,
+        })),
+        facilitiesSlides: facilitiesSlidesData.data.map((item: any) => ({
+          id: item.id,
+          title: item.title,
+          description: item.description,
+          imageUrl: item.img_url,
+        })),
+      },
+      // revalidate: 3600, Removing revalidation because the strapi server spins down occasionally in free tier
+    };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return {
+      props: {
+        heroSlides: [],
+        packageSlides: [],
+        accommodationImages: [],
+        facilitiesSlides: [],
+      },
+    };
+  }
+};
+
+export default function Home({
+  heroSlides = [],
+  packageSlides = [],
+  accommodationImages = [],
+  facilitiesSlides = [],
+}: {
+  heroSlides: HeroSlide[];
+  packageSlides: PackageSlide[];
+  accommodationImages: PackageSlide[];
+  facilitiesSlides: FacilitiesSlide[];
+}) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -21,21 +123,6 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const slides = [
-    {
-      image: "/slide1.jpeg",
-      description: "Luxury redefined. Discover comfort and elegance.",
-    },
-    {
-      image: "/slide2.jpeg",
-      description: "Savor the best cuisines from around the world.",
-    },
-    {
-      image: "/slide3.jpeg",
-      description: "Perfect venues for your special occasions.",
-    },
-  ];
 
   return (
     <div className="font-sans">
@@ -239,22 +326,27 @@ export default function Home() {
           loop
           className="h-full"
         >
-          {slides.map((slide, index) => (
-            <SwiperSlide key={index}>
-              <div
-                className={
-                  "h-full bg-cover bg-center flex items-center justify-center relative " +
-                  styles.animateZoomOut
-                }
-                style={{ backgroundImage: `url(${slide.image})` }}
-              >
-                <div className="absolute inset-0 bg-black opacity-40"></div>
-                <div className={styles.carouselText}>
-                  <p className="text-lg md:text-xl">{slide.description}</p>
+          {heroSlides.map(
+            (
+              slide: { id: number; description: string; imageUrl: string },
+              index: number
+            ) => (
+              <SwiperSlide key={slide.id}>
+                <div
+                  className={
+                    "h-full bg-cover bg-center flex items-center justify-center relative " +
+                    styles.animateZoomOut
+                  }
+                  style={{ backgroundImage: `url(${slide.imageUrl})` }}
+                >
+                  <div className="absolute inset-0 bg-black opacity-40"></div>
+                  <div className={styles.carouselText}>
+                    <p className="text-lg md:text-xl">{slide.description}</p>
+                  </div>
                 </div>
-              </div>
-            </SwiperSlide>
-          ))}
+              </SwiperSlide>
+            )
+          )}
         </Swiper>
       </section>
 
@@ -303,24 +395,11 @@ export default function Home() {
               1024: { slidesPerView: 3 },
             }}
           >
-            {[
-              {
-                image: "/slide1.jpeg",
-                title: "UPTO 35% DISCOUNT",
-              },
-              {
-                image: "/slide2.jpeg",
-                title: "WEDDING PACKAGES",
-              },
-              {
-                image: "/slide3.jpeg",
-                title: "WEEKEND PACKAGES",
-              },
-            ].map((card, index) => (
-              <SwiperSlide key={index}>
+            {packageSlides.map((card, index) => (
+              <SwiperSlide key={card.id}>
                 <div className="overflow-hidden">
                   <img
-                    src={card.image}
+                    src={card.imageUrl}
                     alt={card.title}
                     className="w-full h-48 object-cover"
                   />
@@ -384,8 +463,8 @@ export default function Home() {
             {/* Image 1 */}
             <div className={"overflow-hidden " + styles.imageGridItem1}>
               <img
-                src="/slide1.jpeg"
-                alt="Room 1"
+                src={accommodationImages[0].imageUrl}
+                alt={accommodationImages[0].title}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -393,8 +472,8 @@ export default function Home() {
             {/* Image 2 */}
             <div className={"overflow-hidden " + styles.imageGridItem2}>
               <img
-                src="/slide1.jpeg"
-                alt="Room 2"
+                src={accommodationImages[1].imageUrl}
+                alt={accommodationImages[1].title}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -402,8 +481,8 @@ export default function Home() {
             {/* Image 3 */}
             <div className={"overflow-hidden " + styles.imageGridItem3}>
               <img
-                src="/slide1.jpeg"
-                alt="Room 3"
+                src={accommodationImages[2].imageUrl}
+                alt={accommodationImages[2].title}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -411,8 +490,8 @@ export default function Home() {
             {/* Image 4 */}
             <div className={"overflow-hidden " + styles.imageGridItem4}>
               <img
-                src="/slide1.jpeg"
-                alt="Room 4"
+                src={accommodationImages[3].imageUrl}
+                alt={accommodationImages[3].title}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -420,8 +499,8 @@ export default function Home() {
             {/* Image 5 */}
             <div className={"overflow-hidden " + styles.imageGridItem5}>
               <img
-                src="/slide1.jpeg"
-                alt="Room 5"
+                src={accommodationImages[4].imageUrl}
+                alt={accommodationImages[4].title}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -429,8 +508,8 @@ export default function Home() {
             {/* Image 6 */}
             <div className={"overflow-hidden " + styles.imageGridItem6}>
               <img
-                src="/slide1.jpeg"
-                alt="Room 6"
+                src={accommodationImages[5].imageUrl}
+                alt={accommodationImages[5].title}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -438,8 +517,8 @@ export default function Home() {
             {/* Image 7 */}
             <div className={"overflow-hidden " + styles.imageGridItem7}>
               <img
-                src="/slide1.jpeg"
-                alt="Room 7"
+                src={accommodationImages[6].imageUrl}
+                alt={accommodationImages[6].title}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -493,45 +572,20 @@ export default function Home() {
               1024: { slidesPerView: 3 },
             }}
           >
-            {[
-              {
-                image: "/slide1.jpeg",
-                title: "Banquets and Conference Halls",
-                descrption:
-                  "At Hablis, we take care of our guests. For those who have an early schedule, our chefs take care that a healthy and sumptuous breakfast is packed for the way.",
-              },
-              {
-                image: "/slide2.jpeg",
-                title: "Banquets and Conference Halls",
-                descrption:
-                  "At Hablis, we take care of our guests. For those who have an early schedule, our chefs take care that a healthy and sumptuous breakfast is packed for the way.",
-              },
-              {
-                image: "/slide3.jpeg",
-                title: "Banquets and Conference Halls",
-                descrption:
-                  "At Hablis, we take care of our guests. For those who have an early schedule, our chefs take care that a healthy and sumptuous breakfast is packed for the way.",
-              },
-              {
-                image: "/slide3.jpeg",
-                title: "Banquets and Conference Halls",
-                descrption:
-                  "At Hablis, we take care of our guests. For those who have an early schedule, our chefs take care that a healthy and sumptuous breakfast is packed for the way.",
-              },
-            ].map((card, index) => (
+            {facilitiesSlides.map((slide, index) => (
               <SwiperSlide key={index}>
                 <div className="overflow-hidden">
                   <img
-                    src={card.image}
-                    alt={card.title}
+                    src={slide.imageUrl}
+                    alt={slide.title}
                     className="w-full h-48 object-cover"
                   />
                   <div className="p-4 text-center gap-10">
                     <h3 className="text-xl text-gray-600 py-12 font-[700]">
-                      {card.title}
+                      {slide.title}
                     </h3>
                     <p className="text-base md:text-lg text-left text-gray-500 font-[400] leading-[32px]">
-                      {card.descrption}
+                      {slide.description}
                     </p>
                   </div>
                 </div>
