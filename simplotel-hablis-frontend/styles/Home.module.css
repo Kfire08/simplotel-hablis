@@ -216,3 +216,12 @@
   grid-row-start: 4;
   grid-row-end: 7;
 }
+
+.imageGrid > div img {
+  transition: transform 0.3s ease-in-out;
+}
+
+.imageGrid > div:hover img {
+  transform: scale(1.1); /* Zoom in */
+  cursor: zoom-in;
+}

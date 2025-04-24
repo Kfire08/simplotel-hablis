@@ -652,7 +652,7 @@ export default function Home({
 
       {/* Popular Locations Section */}
       <section className="py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-6xl mx-auto px-4">
           {/* Title */}
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
             POPULAR LOCATIONS NEAR OUR CHENNAI HOTEL
@@ -670,7 +670,7 @@ export default function Home({
           </p>
 
           {/* Locations List */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-30">
             {/* Column 1 */}
             <ul
               className="list-disc text-gray-700 space-y-2"
