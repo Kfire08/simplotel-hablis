@@ -1,3 +1,6 @@
+Frontend Link: https://simplotel-hablis-git-main-akashs-projects-c2365735.vercel.app/
+Backend Link: https://simplotel-hablis-backend.onrender.com/
+
 # Simplotel Hablis Monorepo
 
 This is a monorepo for the **Simplotel Hablis Hotel** project, containing both the frontend and backend applications. The frontend is built using **Next.js**, while the backend is powered by **Strapi** for content management.
